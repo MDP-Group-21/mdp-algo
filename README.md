@@ -29,3 +29,4 @@
 To do: <br/>
 - [ ] Change simulation input to hex
 - [ ] Adapt code for week 8 run (Almost there)
+- [ ] Change arena input to hexstring format
