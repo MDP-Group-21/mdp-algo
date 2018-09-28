@@ -24,3 +24,7 @@
               000 000 000 000 000<br/>
               010 000 000 000 000<br/>
               000 000 000 100 000<br/>
+             
+To do: <br/>
+- [ ] Change simulation input to hex
+- [ ] Adapt code for week 8 run (Almost there)
