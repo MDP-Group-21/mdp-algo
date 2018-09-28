@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>MDP X21 - Map Simulator</title>
+<style>
+body {
+	background-color:#EFEFEF;
+}
+.tblMap{
+	border:solid 6px #535c68;
+}
+.mainPanel{
+	background-color:#95afc0;
+}
+.sidePanel{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#FFF;
+	background-color:#22a6b3;
+	font-style:italic;
+}
+.cellX{
+    width:30px;
+	height:30px;
+	background-color:#535c68;
+}
+.cellS{
+    width:30px;
+	height:30px;
+	background-color:#dff9fb;
+}
+.cellW{
+    width:30px;
+	height:30px;
+	background-color:#30336b;
+}
+.cellR{
+    width:30px;
+	height:30px;
+	background-color:#7ed6df;
+}  
+.cellH{
+    width:30px;
+	height:30px;
+	background-color:#22a6b3;
+}
+.cellG{
+    width:30px;
+	height:30px;
+	background-color:#f6e58d;
+}
+</style>
+<script src="jquery-3.3.1.min.js"></script> 
+<script>
+var mapFrames = [];
+var mapFramesIndx = 0;
+var mapTimer;
+function readMapData(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                //var allText = rawFile.responseText;
+                mapFrames = rawFile.responseText.split(/\n/g);
+				$("#lblFrameTotal").html(mapFrames.length);
+			}
+        }
+    }
+    rawFile.send(null);
+}
+
+function renderMapFrame() {
+    if((mapFramesIndx +1) <= mapFrames.length){
+		var mapFrame = mapFrames[mapFramesIndx];
+		for(i = 0; i < mapFrame.length; i++){
+			var cellValue = mapFrame.substring(i, i+1); 
+			$("#mapCell"+i).attr('class', 'cell' + cellValue);
+		}
+		mapFramesIndx = mapFramesIndx + 1; 
+		$("#lblFrameIndx").html(mapFramesIndx);
+	}
+}
+
+$( document ).ready(function() {
+    readMapData("sim.txt");
+	mapTimer = setInterval(renderMapFrame, 350);
+});
+
+</script>
+</head>
+<body>
+<br/>
+<br/>
+<table cellpadding="16" cellspacing="10" align="center">
+<tr>
+<td class="mainPanel">
+  <table class="tblMap" cellpadding="0" cellspacing="0" align="left">
+  <tr>
+  <td id="mapCell0" class="cellX">&nbsp;</td>
+  <td id="mapCell1" class="cellX">&nbsp;</td>
+  <td id="mapCell2" class="cellX">&nbsp;</td>
+  <td id="mapCell3" class="cellX">&nbsp;</td>
+  <td id="mapCell4" class="cellX">&nbsp;</td>
+  <td id="mapCell5" class="cellX">&nbsp;</td>
+  <td id="mapCell6" class="cellX">&nbsp;</td>
+  <td id="mapCell7" class="cellX">&nbsp;</td>
+  <td id="mapCell8" class="cellX">&nbsp;</td>
+  <td id="mapCell9" class="cellX">&nbsp;</td>
+  <td id="mapCell10" class="cellX">&nbsp;</td>
+  <td id="mapCell11" class="cellX">&nbsp;</td>
+  <td id="mapCell12" class="cellX">&nbsp;</td>
+  <td id="mapCell13" class="cellX">&nbsp;</td>
+  <td id="mapCell14" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell15" class="cellX">&nbsp;</td>
+  <td id="mapCell16" class="cellX">&nbsp;</td>
+  <td id="mapCell17" class="cellX">&nbsp;</td>
+  <td id="mapCell18" class="cellX">&nbsp;</td>
+  <td id="mapCell19" class="cellX">&nbsp;</td>
+  <td id="mapCell20" class="cellX">&nbsp;</td>
+  <td id="mapCell21" class="cellX">&nbsp;</td>
+  <td id="mapCell22" class="cellX">&nbsp;</td>
+  <td id="mapCell23" class="cellX">&nbsp;</td>
+  <td id="mapCell24" class="cellX">&nbsp;</td>
+  <td id="mapCell25" class="cellX">&nbsp;</td>
+  <td id="mapCell26" class="cellX">&nbsp;</td>
+  <td id="mapCell27" class="cellX">&nbsp;</td>
+  <td id="mapCell28" class="cellX">&nbsp;</td>
+  <td id="mapCell29" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell30" class="cellX">&nbsp;</td>
+  <td id="mapCell31" class="cellX">&nbsp;</td>
+  <td id="mapCell32" class="cellX">&nbsp;</td>
+  <td id="mapCell33" class="cellX">&nbsp;</td>
+  <td id="mapCell34" class="cellX">&nbsp;</td>
+  <td id="mapCell35" class="cellX">&nbsp;</td>
+  <td id="mapCell36" class="cellX">&nbsp;</td>
+  <td id="mapCell37" class="cellX">&nbsp;</td>
+  <td id="mapCell38" class="cellX">&nbsp;</td>
+  <td id="mapCell39" class="cellX">&nbsp;</td>
+  <td id="mapCell40" class="cellX">&nbsp;</td>
+  <td id="mapCell41" class="cellX">&nbsp;</td>
+  <td id="mapCell42" class="cellX">&nbsp;</td>
+  <td id="mapCell43" class="cellX">&nbsp;</td>
+  <td id="mapCell44" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell45" class="cellX">&nbsp;</td>
+  <td id="mapCell46" class="cellX">&nbsp;</td>
+  <td id="mapCell47" class="cellX">&nbsp;</td>
+  <td id="mapCell48" class="cellX">&nbsp;</td>
+  <td id="mapCell49" class="cellX">&nbsp;</td>
+  <td id="mapCell50" class="cellX">&nbsp;</td>
+  <td id="mapCell51" class="cellX">&nbsp;</td>
+  <td id="mapCell52" class="cellX">&nbsp;</td>
+  <td id="mapCell53" class="cellX">&nbsp;</td>
+  <td id="mapCell54" class="cellX">&nbsp;</td>
+  <td id="mapCell55" class="cellX">&nbsp;</td>
+  <td id="mapCell56" class="cellX">&nbsp;</td>
+  <td id="mapCell57" class="cellX">&nbsp;</td>
+  <td id="mapCell58" class="cellX">&nbsp;</td>
+  <td id="mapCell59" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell60" class="cellX">&nbsp;</td>
+  <td id="mapCell61" class="cellX">&nbsp;</td>
+  <td id="mapCell62" class="cellX">&nbsp;</td>
+  <td id="mapCell63" class="cellX">&nbsp;</td>
+  <td id="mapCell64" class="cellX">&nbsp;</td>
+  <td id="mapCell65" class="cellX">&nbsp;</td>
+  <td id="mapCell66" class="cellX">&nbsp;</td>
+  <td id="mapCell67" class="cellX">&nbsp;</td>
+  <td id="mapCell68" class="cellX">&nbsp;</td>
+  <td id="mapCell69" class="cellX">&nbsp;</td>
+  <td id="mapCell70" class="cellX">&nbsp;</td>
+  <td id="mapCell71" class="cellX">&nbsp;</td>
+  <td id="mapCell72" class="cellX">&nbsp;</td>
+  <td id="mapCell73" class="cellX">&nbsp;</td>
+  <td id="mapCell74" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell75" class="cellX">&nbsp;</td>
+  <td id="mapCell76" class="cellX">&nbsp;</td>
+  <td id="mapCell77" class="cellX">&nbsp;</td>
+  <td id="mapCell78" class="cellX">&nbsp;</td>
+  <td id="mapCell79" class="cellX">&nbsp;</td>
+  <td id="mapCell80" class="cellX">&nbsp;</td>
+  <td id="mapCell81" class="cellX">&nbsp;</td>
+  <td id="mapCell82" class="cellX">&nbsp;</td>
+  <td id="mapCell83" class="cellX">&nbsp;</td>
+  <td id="mapCell84" class="cellX">&nbsp;</td>
+  <td id="mapCell85" class="cellX">&nbsp;</td>
+  <td id="mapCell86" class="cellX">&nbsp;</td>
+  <td id="mapCell87" class="cellX">&nbsp;</td>
+  <td id="mapCell88" class="cellX">&nbsp;</td>
+  <td id="mapCell89" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell90" class="cellX">&nbsp;</td>
+  <td id="mapCell91" class="cellX">&nbsp;</td>
+  <td id="mapCell92" class="cellX">&nbsp;</td>
+  <td id="mapCell93" class="cellX">&nbsp;</td>
+  <td id="mapCell94" class="cellX">&nbsp;</td>
+  <td id="mapCell95" class="cellX">&nbsp;</td>
+  <td id="mapCell96" class="cellX">&nbsp;</td>
+  <td id="mapCell97" class="cellX">&nbsp;</td>
+  <td id="mapCell98" class="cellX">&nbsp;</td>
+  <td id="mapCell99" class="cellX">&nbsp;</td>
+  <td id="mapCell100" class="cellX">&nbsp;</td>
+  <td id="mapCell101" class="cellX">&nbsp;</td>
+  <td id="mapCell102" class="cellX">&nbsp;</td>
+  <td id="mapCell103" class="cellX">&nbsp;</td>
+  <td id="mapCell104" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell105" class="cellX">&nbsp;</td>
+  <td id="mapCell106" class="cellX">&nbsp;</td>
+  <td id="mapCell107" class="cellX">&nbsp;</td>
+  <td id="mapCell108" class="cellX">&nbsp;</td>
+  <td id="mapCell109" class="cellX">&nbsp;</td>
+  <td id="mapCell110" class="cellX">&nbsp;</td>
+  <td id="mapCell111" class="cellX">&nbsp;</td>
+  <td id="mapCell112" class="cellX">&nbsp;</td>
+  <td id="mapCell113" class="cellX">&nbsp;</td>
+  <td id="mapCell114" class="cellX">&nbsp;</td>
+  <td id="mapCell115" class="cellX">&nbsp;</td>
+  <td id="mapCell116" class="cellX">&nbsp;</td>
+  <td id="mapCell117" class="cellX">&nbsp;</td>
+  <td id="mapCell118" class="cellX">&nbsp;</td>
+  <td id="mapCell119" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell120" class="cellX">&nbsp;</td>
+  <td id="mapCell121" class="cellX">&nbsp;</td>
+  <td id="mapCell122" class="cellX">&nbsp;</td>
+  <td id="mapCell123" class="cellX">&nbsp;</td>
+  <td id="mapCell124" class="cellX">&nbsp;</td>
+  <td id="mapCell125" class="cellX">&nbsp;</td>
+  <td id="mapCell126" class="cellX">&nbsp;</td>
+  <td id="mapCell127" class="cellX">&nbsp;</td>
+  <td id="mapCell128" class="cellX">&nbsp;</td>
+  <td id="mapCell129" class="cellX">&nbsp;</td>
+  <td id="mapCell130" class="cellX">&nbsp;</td>
+  <td id="mapCell131" class="cellX">&nbsp;</td>
+  <td id="mapCell132" class="cellX">&nbsp;</td>
+  <td id="mapCell133" class="cellX">&nbsp;</td>
+  <td id="mapCell134" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell135" class="cellX">&nbsp;</td>
+  <td id="mapCell136" class="cellX">&nbsp;</td>
+  <td id="mapCell137" class="cellX">&nbsp;</td>
+  <td id="mapCell138" class="cellX">&nbsp;</td>
+  <td id="mapCell139" class="cellX">&nbsp;</td>
+  <td id="mapCell140" class="cellX">&nbsp;</td>
+  <td id="mapCell141" class="cellX">&nbsp;</td>
+  <td id="mapCell142" class="cellX">&nbsp;</td>
+  <td id="mapCell143" class="cellX">&nbsp;</td>
+  <td id="mapCell144" class="cellX">&nbsp;</td>
+  <td id="mapCell145" class="cellX">&nbsp;</td>
+  <td id="mapCell146" class="cellX">&nbsp;</td>
+  <td id="mapCell147" class="cellX">&nbsp;</td>
+  <td id="mapCell148" class="cellX">&nbsp;</td>
+  <td id="mapCell149" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell150" class="cellX">&nbsp;</td>
+  <td id="mapCell151" class="cellX">&nbsp;</td>
+  <td id="mapCell152" class="cellX">&nbsp;</td>
+  <td id="mapCell153" class="cellX">&nbsp;</td>
+  <td id="mapCell154" class="cellX">&nbsp;</td>
+  <td id="mapCell155" class="cellX">&nbsp;</td>
+  <td id="mapCell156" class="cellX">&nbsp;</td>
+  <td id="mapCell157" class="cellX">&nbsp;</td>
+  <td id="mapCell158" class="cellX">&nbsp;</td>
+  <td id="mapCell159" class="cellX">&nbsp;</td>
+  <td id="mapCell160" class="cellX">&nbsp;</td>
+  <td id="mapCell161" class="cellX">&nbsp;</td>
+  <td id="mapCell162" class="cellX">&nbsp;</td>
+  <td id="mapCell163" class="cellX">&nbsp;</td>
+  <td id="mapCell164" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell165" class="cellX">&nbsp;</td>
+  <td id="mapCell166" class="cellX">&nbsp;</td>
+  <td id="mapCell167" class="cellX">&nbsp;</td>
+  <td id="mapCell168" class="cellX">&nbsp;</td>
+  <td id="mapCell169" class="cellX">&nbsp;</td>
+  <td id="mapCell170" class="cellX">&nbsp;</td>
+  <td id="mapCell171" class="cellX">&nbsp;</td>
+  <td id="mapCell172" class="cellX">&nbsp;</td>
+  <td id="mapCell173" class="cellX">&nbsp;</td>
+  <td id="mapCell174" class="cellX">&nbsp;</td>
+  <td id="mapCell175" class="cellX">&nbsp;</td>
+  <td id="mapCell176" class="cellX">&nbsp;</td>
+  <td id="mapCell177" class="cellX">&nbsp;</td>
+  <td id="mapCell178" class="cellX">&nbsp;</td>
+  <td id="mapCell179" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell180" class="cellX">&nbsp;</td>
+  <td id="mapCell181" class="cellX">&nbsp;</td>
+  <td id="mapCell182" class="cellX">&nbsp;</td>
+  <td id="mapCell183" class="cellX">&nbsp;</td>
+  <td id="mapCell184" class="cellX">&nbsp;</td>
+  <td id="mapCell185" class="cellX">&nbsp;</td>
+  <td id="mapCell186" class="cellX">&nbsp;</td>
+  <td id="mapCell187" class="cellX">&nbsp;</td>
+  <td id="mapCell188" class="cellX">&nbsp;</td>
+  <td id="mapCell189" class="cellX">&nbsp;</td>
+  <td id="mapCell190" class="cellX">&nbsp;</td>
+  <td id="mapCell191" class="cellX">&nbsp;</td>
+  <td id="mapCell192" class="cellX">&nbsp;</td>
+  <td id="mapCell193" class="cellX">&nbsp;</td>
+  <td id="mapCell194" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell195" class="cellX">&nbsp;</td>
+  <td id="mapCell196" class="cellX">&nbsp;</td>
+  <td id="mapCell197" class="cellX">&nbsp;</td>
+  <td id="mapCell198" class="cellX">&nbsp;</td>
+  <td id="mapCell199" class="cellX">&nbsp;</td>
+  <td id="mapCell200" class="cellX">&nbsp;</td>
+  <td id="mapCell201" class="cellX">&nbsp;</td>
+  <td id="mapCell202" class="cellX">&nbsp;</td>
+  <td id="mapCell203" class="cellX">&nbsp;</td>
+  <td id="mapCell204" class="cellX">&nbsp;</td>
+  <td id="mapCell205" class="cellX">&nbsp;</td>
+  <td id="mapCell206" class="cellX">&nbsp;</td>
+  <td id="mapCell207" class="cellX">&nbsp;</td>
+  <td id="mapCell208" class="cellX">&nbsp;</td>
+  <td id="mapCell209" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell210" class="cellX">&nbsp;</td>
+  <td id="mapCell211" class="cellX">&nbsp;</td>
+  <td id="mapCell212" class="cellX">&nbsp;</td>
+  <td id="mapCell213" class="cellX">&nbsp;</td>
+  <td id="mapCell214" class="cellX">&nbsp;</td>
+  <td id="mapCell215" class="cellX">&nbsp;</td>
+  <td id="mapCell216" class="cellX">&nbsp;</td>
+  <td id="mapCell217" class="cellX">&nbsp;</td>
+  <td id="mapCell218" class="cellX">&nbsp;</td>
+  <td id="mapCell219" class="cellX">&nbsp;</td>
+  <td id="mapCell220" class="cellX">&nbsp;</td>
+  <td id="mapCell221" class="cellX">&nbsp;</td>
+  <td id="mapCell222" class="cellX">&nbsp;</td>
+  <td id="mapCell223" class="cellX">&nbsp;</td>
+  <td id="mapCell224" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell225" class="cellX">&nbsp;</td>
+  <td id="mapCell226" class="cellX">&nbsp;</td>
+  <td id="mapCell227" class="cellX">&nbsp;</td>
+  <td id="mapCell228" class="cellX">&nbsp;</td>
+  <td id="mapCell229" class="cellX">&nbsp;</td>
+  <td id="mapCell230" class="cellX">&nbsp;</td>
+  <td id="mapCell231" class="cellX">&nbsp;</td>
+  <td id="mapCell232" class="cellX">&nbsp;</td>
+  <td id="mapCell233" class="cellX">&nbsp;</td>
+  <td id="mapCell234" class="cellX">&nbsp;</td>
+  <td id="mapCell235" class="cellX">&nbsp;</td>
+  <td id="mapCell236" class="cellX">&nbsp;</td>
+  <td id="mapCell237" class="cellX">&nbsp;</td>
+  <td id="mapCell238" class="cellX">&nbsp;</td>
+  <td id="mapCell239" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell240" class="cellX">&nbsp;</td>
+  <td id="mapCell241" class="cellX">&nbsp;</td>
+  <td id="mapCell242" class="cellX">&nbsp;</td>
+  <td id="mapCell243" class="cellX">&nbsp;</td>
+  <td id="mapCell244" class="cellX">&nbsp;</td>
+  <td id="mapCell245" class="cellX">&nbsp;</td>
+  <td id="mapCell246" class="cellX">&nbsp;</td>
+  <td id="mapCell247" class="cellX">&nbsp;</td>
+  <td id="mapCell248" class="cellX">&nbsp;</td>
+  <td id="mapCell249" class="cellX">&nbsp;</td>
+  <td id="mapCell250" class="cellX">&nbsp;</td>
+  <td id="mapCell251" class="cellX">&nbsp;</td>
+  <td id="mapCell252" class="cellX">&nbsp;</td>
+  <td id="mapCell253" class="cellX">&nbsp;</td>
+  <td id="mapCell254" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell255" class="cellX">&nbsp;</td>
+  <td id="mapCell256" class="cellX">&nbsp;</td>
+  <td id="mapCell257" class="cellX">&nbsp;</td>
+  <td id="mapCell258" class="cellX">&nbsp;</td>
+  <td id="mapCell259" class="cellX">&nbsp;</td>
+  <td id="mapCell260" class="cellX">&nbsp;</td>
+  <td id="mapCell261" class="cellX">&nbsp;</td>
+  <td id="mapCell262" class="cellX">&nbsp;</td>
+  <td id="mapCell263" class="cellX">&nbsp;</td>
+  <td id="mapCell264" class="cellX">&nbsp;</td>
+  <td id="mapCell265" class="cellX">&nbsp;</td>
+  <td id="mapCell266" class="cellX">&nbsp;</td>
+  <td id="mapCell267" class="cellX">&nbsp;</td>
+  <td id="mapCell268" class="cellX">&nbsp;</td>
+  <td id="mapCell269" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell270" class="cellX">&nbsp;</td>
+  <td id="mapCell271" class="cellX">&nbsp;</td>
+  <td id="mapCell272" class="cellX">&nbsp;</td>
+  <td id="mapCell273" class="cellX">&nbsp;</td>
+  <td id="mapCell274" class="cellX">&nbsp;</td>
+  <td id="mapCell275" class="cellX">&nbsp;</td>
+  <td id="mapCell276" class="cellX">&nbsp;</td>
+  <td id="mapCell277" class="cellX">&nbsp;</td>
+  <td id="mapCell278" class="cellX">&nbsp;</td>
+  <td id="mapCell279" class="cellX">&nbsp;</td>
+  <td id="mapCell280" class="cellX">&nbsp;</td>
+  <td id="mapCell281" class="cellX">&nbsp;</td>
+  <td id="mapCell282" class="cellX">&nbsp;</td>
+  <td id="mapCell283" class="cellX">&nbsp;</td>
+  <td id="mapCell284" class="cellX">&nbsp;</td>
+  </tr>
+  <tr>
+  <td id="mapCell285" class="cellX">&nbsp;</td>
+  <td id="mapCell286" class="cellX">&nbsp;</td>
+  <td id="mapCell287" class="cellX">&nbsp;</td>
+  <td id="mapCell288" class="cellX">&nbsp;</td>
+  <td id="mapCell289" class="cellX">&nbsp;</td>
+  <td id="mapCell290" class="cellX">&nbsp;</td>
+  <td id="mapCell291" class="cellX">&nbsp;</td>
+  <td id="mapCell292" class="cellX">&nbsp;</td>
+  <td id="mapCell293" class="cellX">&nbsp;</td>
+  <td id="mapCell294" class="cellX">&nbsp;</td>
+  <td id="mapCell295" class="cellX">&nbsp;</td>
+  <td id="mapCell296" class="cellX">&nbsp;</td>
+  <td id="mapCell297" class="cellX">&nbsp;</td>
+  <td id="mapCell298" class="cellX">&nbsp;</td>
+  <td id="mapCell299" class="cellX">&nbsp;</td>
+  </tr>
+  </table>
+</td>
+<td class="sidePanel">
+<h1>X21</h1>
+<h5>Multi-disciplinary Project</h5>
+<h6>AY 18/2019 Semester 1</h6>
+<br />
+<br />
+<br />
+<span id="lblFrameIndx"></span> / <span id="lblFrameTotal"></span> Moves
+</td>
+</tr>
+</table>
+
+</body>
+</html>
