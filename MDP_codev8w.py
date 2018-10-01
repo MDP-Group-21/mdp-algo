@@ -194,7 +194,7 @@ def print_descriptor():
         des2 += '0'
     hstr2 = '%0*X' % ((len(des2) + 3) // 4, int(des2, 2))
     #print(hstr2)
-    return hstr + '\n' + hstr2 + '\n'
+    return hstr + '\n' + hstr2
 
 def print_alt_descriptor():
     descriptor = []
@@ -1049,18 +1049,26 @@ def robot_right(robot):
 def place_obstacles():
     #accepts arena input, 0 for empty, 1 for wall
     #places walls in arena, and prints a hexstr of the arena
-    lines = []
-    for i in range(20):
-        line = input('Simulation arena data, please')
-        lines.append(line)
-    string = '\n'.join(lines)
-    string = ''.join(string.split())
-    obstacles = string.split()
+    #lines = []
+    #for i in range(20):
+    #    line = input('Simulation arena data, please')
+    #    lines.append(line)
+    string1 = bin(int(input('Map hexstring, please'), 16))[2:]
+    string2 = string1[2:len(string1)-2]
     for j in range(20):
         for i in range(15):
-            if string[i+(j*15)] == '1':
+            if string2[i+(j*15)] == '1':
                 place_wall(i,j)
-    hexstr = '%0*X' % ((len(string)+3) // 4, int(string, 2))
+        
+    
+    #string = '\n'.join(lines)
+    #string = ''.join(string.split())
+    #obstacles = string.split()
+    #for j in range(20):
+    #    for i in range(15):
+    #        if string[i+(j*15)] == '1':
+    #            place_wall(i,j)
+    hexstr = '%0*X' % ((len(string2)+3) // 4, int(string2, 2))
     print(hexstr)
 
 #main
