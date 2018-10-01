@@ -1,5 +1,6 @@
 # mdp-algo
 28/09/18: Uploaded code for clearing checklist.<br/>
+01/10/18: Reuploaded code. Input adapted for hexstring.
           <t/>1. Note: Not to be used for actual run.<br/>
           2. Requires IDLE and wampserver to run.<br/>
             2a. Put the HTML + js file into the 'www' folder of your wampserver directory to run<br/>
