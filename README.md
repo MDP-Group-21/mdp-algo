@@ -28,6 +28,8 @@
              C1000002000000807000008001000200040808101020004000800100000E0100000040000083
              Arena8:
              C00000000030006010C0E180000000000000004300000000000000FFE1000200000000000103
+          4. To run realtimemap:
+             Put index.html, testsocket.py, and the MDP code to the directory for running the server.
              
 ##### To do:
 - [X] Change simulation input to hex
