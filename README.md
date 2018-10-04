@@ -4,6 +4,9 @@
           - Reuploaded code. Input adapted for hexstring
           - Uploaded week 8 code (non-integrated)
           <br/>
+- 04/10/18:
+          - Updated week 8 code (integrated)
+          
           1. Note: Not to be used for actual run.<br/>
           2. Requires IDLE and wampserver to run.<br/>
             2a. Put the HTML + js file into the 'www' folder of your wampserver directory to run<br/>
@@ -25,7 +28,9 @@
              C1000002000000807000008001000200040808101020004000800100000E0100000040000083<br/>
              Arena8:<br/>
              C00000000030006010C0E180000000000000004300000000000000FFE1000200000000000103<br/>
-To do: <br/>
+#####To do: <br/>
 - [X] Change simulation input to hex
-- [ ] Adapt code for week 8 run (Almost there)
-- [ ] Begin working on integration (With RPI)
+- [X] Adapt code for week 8 run (Almost there)
+- [X] Begin working on integration (With RPI)
+- [ ] Adapt code for burst mode
+- [ ] Improve step evaluation to include turning as 1 ste
