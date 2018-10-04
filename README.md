@@ -37,5 +37,5 @@
 - [X] Begin working on integration (With RPI) (Using ~~multiprocess~~ socket)
 - [ ] Adapt code for burst mode
 - [ ] Improve step evaluation to include turning as 1 step
-- [ ] Adapt code for Android (killswitch, start explore, start fastest)
-- [ ] Adapt code the image recognition
+- [X] Adapt code for Android (killswitch, start explore, start fastest)
+- [ ] Adapt code for image recognition
