@@ -1,11 +1,11 @@
 # mdp-algo
 - 28/09/18: Uploaded code for clearing checklist.<br/>
 - 01/10/18: 
-          - Reuploaded code. Input adapted for hexstring
-          - Uploaded week 8 code (non-integrated)
+          Reuploaded code. Input adapted for hexstring
+          Uploaded week 8 code (non-integrated)
           <br/>
 - 04/10/18:
-          - Updated week 8 code (integrated)
+          Updated week 8 code (integrated)
           
           1. Note: Not to be used for actual run.<br/>
           2. Requires IDLE and wampserver to run.<br/>
