@@ -29,7 +29,7 @@
              Arena8:
              C00000000030006010C0E180000000000000004300000000000000FFE1000200000000000103
              
-##### To do: <br/>
+##### To do:
 - [X] Change simulation input to hex
 - [X] Adapt code for week 8 run (Almost there)
 - [X] Begin working on integration (With RPI)
