@@ -35,7 +35,7 @@
 - [X] Change simulation input to hex
 - [X] Adapt code for week 8 run (Almost there)
 - [X] Begin working on integration (With RPI) (Using ~~multiprocess~~ socket)
-- [ ] Adapt code for burst mode
+- [ ] Adapt code for burst mode (partially done)
 - [ ] Improve step evaluation to include turning as 1 step
 - [X] Adapt code for Android (killswitch, start explore, start fastest)
 - [ ] Adapt code for image recognition
