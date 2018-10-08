@@ -40,10 +40,10 @@ class Algo():
                 print('reading')
 ##                while self.client.recv(self.buffersize) == None:            
                 msg = self.client.recv(1024).decode('utf-8')
+                print('READ DATA: ' + msg)
                 
                 if fro in msg:
                     msg = msg.split('|')[1].strip()
-                    print(msg)
                     if ';' in msg:
                         return msg.split(';')
                     else:
