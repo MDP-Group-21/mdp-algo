@@ -6,6 +6,11 @@
           <br/>
 - 04/10/18:
           Updated week 8 code (integrated)
+- 08/10/18:
+          Updated week 8 code for image recognition<br/>
+          Bug fixes for 0 crash states(TBC)<br/>
+          Further adapted code for Android killswitch<br/>
+          
           
           1. Note: Non-week uploads are not to be used for actual run.
           2. Requires IDLE and wampserver to run.
@@ -38,4 +43,4 @@
 - [ ] Adapt code for burst mode (partially done)
 - [ ] Improve step evaluation to include turning as 1 step
 - [X] Adapt code for Android (killswitch, start explore, start fastest)
-- [ ] Adapt code for image recognition
+- [X] Adapt code for image recognition
