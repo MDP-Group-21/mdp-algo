@@ -32,6 +32,7 @@ class Algo():
             except socket.error:
                 print('send error occurred')
                 self.connect()
+                time.sleep(1)
                 
 
     def read(self,fro=''):

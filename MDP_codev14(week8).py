@@ -261,7 +261,8 @@ def robot_sense(robot):
         mail.write('ARD|.')
         try:
             sensedata = list(map(int, mail.read('ARD')))
-            if any(i in sensedata for i in illegals) or (len(sensedata)>(slength+1)) or (len(sensedata)<slength):
+            print(sensedata)
+            if any(i in sensedata for i in illegals):
                 sflag = False
                 color.write('Sensor data ambiguous, rereading...','KEYWORD')
                 time.sleep(0.5)
@@ -460,22 +461,22 @@ def robot_sense(robot):
 
     #firstsense
 ##    try:
-##        if sensedata[0] == '9':
+##        if sensedata[0] == 9:
 ##            pt1.explored = pt2.explored = pt3.explored = True
 ##            pt1.text = pt2.text = pt3.text = ' '
-##        elif sensedata[0] == '2':
+##        elif sensedata[0] == 2:
 ##            pt1.explored = pt2.explored = True
 ##            pt1.text = pt2.text = ' '
 ##            if pt3 != 'x':
 ##                pt3.explored = True
 ##                pt3.text = 'W'
-##        elif sensedata[0] == '1':
+##        elif sensedata[0] == 1:
 ##            pt1.explored = True
 ##            pt1.text = ' '
 ##            if pt2 != 'x':
 ##                pt2.explored = True
 ##                pt2.text = 'W'
-##        elif sensedata[0] == '0':
+##        elif sensedata[0] == 0:
 ##            robot.wall_ahead = True
 ##            if pt1 != 'x':
 ##                pt1.explored = True
@@ -485,22 +486,22 @@ def robot_sense(robot):
 ##            
 ##
 ##    try:        
-##        if sensedata[1] == '9':
+##        if sensedata[1] == 9:
 ##            pt4.explored = pt5.explored = pt6.explored = True
 ##            pt4.text = pt5.text = pt6.text = ' '
-##        elif sensedata[1] == '2':
+##        elif sensedata[1] == 2:
 ##            pt4.explored = pt5.explored = True
 ##            pt4.text = pt5.text = ' '
 ##            if pt6 != 'x':
 ##                pt6.explored = True
 ##                pt6.text = 'W'
-##        elif sensedata[1] == '1':
+##        elif sensedata[1] == 1:
 ##            pt4.explored = True
 ##            pt4.text = ' '
 ##            if pt5 != 'x':
 ##                pt5.explored = True
 ##                pt5.text = 'W'
-##        elif sensedata[1] == '0':
+##        elif sensedata[1] == 0:
 ##            robot.wall_ahead = True
 ##            if pt4 != 'x':
 ##                pt4.explored = True
@@ -510,22 +511,22 @@ def robot_sense(robot):
 ##            
 ##
 ##    try:    
-##        if sensedata[2] == '9':
+##        if sensedata[2] == 9:
 ##            pt7.explored = pt8.explored = pt9.explored = True
 ##            pt7.text = pt8.text = pt9.text = ' '
-##        elif sensedata[2] == '2':
+##        elif sensedata[2] == 2:
 ##            pt7.explored = pt8.explored = True
 ##            pt7.text = pt8.text = ' '
 ##            if pt9 != 'x':
 ##                pt9.explored = True
 ##                pt9.text = 'W'
-##        elif sensedata[2] == '1':
+##        elif sensedata[2] == 1:
 ##            pt7.explored = True
 ##            pt7.text = ' '
 ##            if pt8 != 'x':
 ##                pt8.explored = True
 ##                pt8.text = 'W'
-##        elif sensedata[2] == '0':
+##        elif sensedata[2] == 0:
 ##            robot.wall_ahead = True
 ##            if pt7 != 'x':
 ##                pt7.explored = True
@@ -534,16 +535,16 @@ def robot_sense(robot):
 ##        color.write('Front sensor 3 input error','KEYWORD')
 ##        
 ##    try:
-##        if sensedata[3] == '9':
+##        if sensedata[3] == 9:
 ##            pt10.explored = pt11.explored = True
 ##            pt10.text = pt11.text = ' '
-##        elif sensedata[3] == '1':
+##        elif sensedata[3] == 1:
 ##            pt10.explored = True
 ##            pt10.text = ' '
 ##            if pt11 != 'x':
 ##                pt11.explored = True
 ##                pt11.text = 'W'
-##        elif sensedata[3] == '0':
+##        elif sensedata[3] == 0:
 ##            robot.wall_right = True
 ##            robot.right_decay = 2
 ##            if pt10 != 'x':
@@ -553,16 +554,16 @@ def robot_sense(robot):
 ##        color.write('Right sensor input error','KEYWORD')
 ##
 ##    try:
-##        if sensedata[4] == '9':
+##        if sensedata[4] == 9:
 ##            pt12.explored = pt13.explored = True
 ##            pt12.text = pt13.text = ' '
-##        elif sensedata[4] == '1':
+##        elif sensedata[4] == 1:
 ##            pt12.explored = True
 ##            pt12.text = ' '
 ##            if pt13 != 'x':
 ##                pt13.explored = True
 ##                pt13.text = 'W'
-##        elif sensedata[4] == '0':
+##        elif sensedata[4] == 0:
 ##            robot.wall_left = True
 ##            robot.left_decay = 2
 ##            if pt12 != 'x':
@@ -572,71 +573,80 @@ def robot_sense(robot):
 ##        color.write('Left sensor input error','KEYWORD')
 
     #altsense
-
+    #debug
+    print('sensedata')
+    print(sensedata)
     try:
-        if sensedata[0] == '1':
-            if pt1 != 'x':
-                pt1.explored = True
-                pt1.text = 'W'
-        elif sensedata[0] == '0':
-            robot.wall_ahead = True
+        if sensedata[0] == 1 or sensedata[0] == 9:
             if pt1 != 'x':
                 pt1.explored = True
                 pt1.text = ' '
+        elif sensedata[0] == 0:
+            print('wallahead')
+            robot.wall_ahead = True
+            if pt1 != 'x':
+                pt1.explored = True
+                pt1.text = 'W'
     except:
         color.write('Front sensor 1 input error','KEYWORD')
             
 
     try:        
-        if sensedata[1] == '1':
-            if pt4 != 'x':
-                pt4.explored = True
-                pt4.text = 'W'
-        elif sensedata[1] == '0':
-            robot.wall_ahead = True
+        if sensedata[1] == 1 or sensedata[1] == 9:
             if pt4 != 'x':
                 pt4.explored = True
                 pt4.text = ' '
+        elif sensedata[1] == 0:
+            print('wallahead')
+            robot.wall_ahead = True
+            if pt4 != 'x':
+                pt4.explored = True
+                pt4.text = 'W'
     except:
         color.write('Front sensor 2 input error','KEYWORD')
             
 
     try:    
-        if sensedata[2] == '1':
-            if pt7 != 'x':
-                pt7.explored = True
-                pt7.text = 'W'
-        elif sensedata[2] == '0':
-            robot.wall_ahead = True
+        if sensedata[2] == 1 or sensedata[2] == 9:
             if pt7 != 'x':
                 pt7.explored = True
                 pt7.text = ' '
+        elif sensedata[2] == 0:
+            print('wallahead')
+            robot.wall_ahead = True
+            if pt7 != 'x':
+                pt7.explored = True
+                pt7.text = 'W'
     except:
         color.write('Front sensor 3 input error','KEYWORD')
         
     try:
-        if sensedata[3] == '1':
+        if sensedata[3] == 1 or sensedata[3] == 9:
+            if pt10 != 'x':
+                pt10.explored = True
+                pt10.text = ' '
+        elif sensedata[3] == 0:
+            robot.wall_right = True
+            print('wallright')
+            robot.right_decay = 2
             if pt10 != 'x':
                 pt10.explored = True
                 pt10.text = 'W'
-        elif sensedata[3] == '0':
-            robot.wall_ahead = True
-            if pt10 != 'x':
-                pt1.explored = True
-                pt1.text = ' '
     except:
         color.write('Right sensor input error','KEYWORD')
 
     try:
-        if sensedata[4] == '1':
-            if pt12 != 'x':
-                pt12.explored = True
-                pt12.text = 'W'
-        elif sensedata[4] == '0':
-            robot.wall_ahead = True
+        if sensedata[4] == 1 or sensedata[4] == 9:
             if pt12 != 'x':
                 pt12.explored = True
                 pt12.text = ' '
+        elif sensedata[4] == 0:
+            robot.wall_left = True
+            print('wallleft')
+            robot.left_decay = 2
+            if pt12 != 'x':
+                pt12.explored = True
+                pt12.text = 'W'
     except:
         color.write('Left sensor input error','KEYWORD')
 
@@ -648,7 +658,7 @@ def robot_sense(robot):
     else:
         mail.write('AND|'+ print_descriptor() + ';' + str(robot.coord[0]) + ';' + str(robot.coord[1]) + ';' + robot.face + ';' + imgstr)
 
-    if sensedata[5] == '7':
+    if sensedata[5] == 7:
         return
     else:
         color.write('Robot not ready','KEYWORD')
@@ -737,10 +747,9 @@ def explore(robot):
             right_wall_before = False
         else:
             print('none')
-            for i in spaces(robot):
-                robot_forward(robot)
-                right_wall_before = False
-                path.append(robot.face)
+            robot_forward(robot)
+            right_wall_before = False
+            path.append(robot.face)
         steps += 1
         if robot.coord == goal:
             goal_explored = True
@@ -943,11 +952,11 @@ def robot_forward(robot, text='W'):
         mail.write('ARD|' + text)
         try:
             ack = mail.read('ARD')
-            if 'ACK' in ack:
-                recv = True
-            else:
-                color.write('ACK not in string. Rereading...', 'KEYWORD')
-                time.sleep(0.5)
+            #if 'ACK' in ack:
+            recv = True
+##            else:
+##                color.write('ACK not in string. Rereading...', 'KEYWORD')
+##                time.sleep(0.5)
         except:
             color.write('Read error.', 'COMMENT')
             time.sleep(0.5)
@@ -1011,11 +1020,11 @@ def robot_left(robot):
         mail.write('ARD|A')
         try:
             ack = mail.read('ARD')
-            if 'ACK' in ack:
-                recv = True
-            else:
-                color.write('ACK not in string. Rereading...', 'KEYWORD')
-                time.sleep(0.5)
+            #if 'ACK' in ack:
+            recv = True
+##            else:
+##                color.write('ACK not in string. Rereading...', 'KEYWORD')
+##                time.sleep(0.5)
         except:
             color.write('Read error.', 'COMMENT')
             time.sleep(0.5)
@@ -1053,11 +1062,11 @@ def robot_right(robot):
         mail.write('ARD|D')
         try:
             ack = mail.read('ARD')
-            if 'ACK' in ack:
-                recv = True
-            else:
-                color.write('ACK not in string. Rereading...', 'KEYWORD')
-                time.sleep(0.5)
+            #if 'ACK' in ack:
+            recv = True
+##            else:
+##                color.write('ACK not in string. Rereading...', 'KEYWORD')
+##                time.sleep(0.5)
         except:
             color.write('Read error.', 'COMMENT')
             time.sleep(0.5)
@@ -1132,16 +1141,22 @@ if __name__ == "__main__":
     mdp_explore_map = []
     initialize_map()
     msg = ''
+    rdata = []
+    explore_complete = False
     while True:
         try:
-            print('Robot data, please')
-            rdata = mail.read('AND')
-            robot = Robot([int(rdata[0]), int(rdata[1])],rdata[2])
-            place_robot(robot.coord)
-            print('Awaiting orders')
-            msg = mail.read('AND')
+            if rdata == []:
+                print('Robot data, please')
+                rdata = mail.read('AND')
+                robot = Robot([int(rdata[0]), int(rdata[1])],rdata[2])
+                place_robot(robot.coord)
+                print('Awaiting orders')
+            if msg == '':
+                msg = mail.read('AND')
             if msg == 'e':
                 explore(robot)
+                explore_complete = True
+                print('Explore complete, awaiting command...')
                 msg = mail.read('AND')
                 if msg == 'f':
                     try:
@@ -1158,27 +1173,44 @@ if __name__ == "__main__":
                         fastest_path(robot, start, goal)
                 elif msg == 'end':
                     print('Understood. Ending...')
-                    exit()    
+                    exit()
+            elif msg == 'f' and explore_complete:
+                try:
+                    print('Waypoints, please.')
+                    rdata = mail.read('AND')
+                    waypoint = [int(rdata[0]), int(rdata[1])]
+                except:
+                    color.write('Waypoint initialization failed, defaulting to start','KEYWORD')
+                    waypoint = start
+                if waypoint != start or waypoint != goal:
+                    fastest_path(robot, start, waypoint)
+                    fastest_path(robot, waypoint, end)
+                else:
+                    fastest_path(robot, start, goal)
             elif msg == 'end':
                 print('Understood. Ending...')
                 exit()
+            else:
+                msg == ''
         except:
-            color.write('An error has occurred. Restarting routine.','COMMENT')
-            if msg == 'e':
-                explore()
-            elif msg == 'f':
-                if robot.coord == start:
-                    if waypoint != start or waypoint != goal:
-                        fastest_path(robot, start, waypoint)
-                        fastest_path(robot, waypoint, end)
-                    else:
-                        fastest_path(robot, start, goal)
-                else:
-                    if waypoint != start or waypoint != goal:
-                        fastest_path(robot, robot.coord, waypoint)
-                        fastest_path(robot, waypoint, end)
-                    else:
-                        fastest_path(robot, robot.coord, goal)
+            print('OOF')
+            pass
+##            color.write('An error has occurred. Restarting routine.','COMMENT')
+##            if msg == 'e':
+##                explore()
+##            elif msg == 'f':
+##                if robot.coord == start:
+##                    if waypoint != start or waypoint != goal:
+##                        fastest_path(robot, start, waypoint)
+##                        fastest_path(robot, waypoint, end)
+##                    else:
+##                        fastest_path(robot, start, goal)
+##                else:
+##                    if waypoint != start or waypoint != goal:
+##                        fastest_path(robot, robot.coord, waypoint)
+##                        fastest_path(robot, waypoint, end)
+##                    else:
+##                        fastest_path(robot, robot.coord, goal)
                     
             
             
