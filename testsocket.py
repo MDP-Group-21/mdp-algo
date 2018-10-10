@@ -46,7 +46,11 @@ class Algo():
                 if fro in msg:
                     msg = msg.split('|')[1].strip()
                     if ';' in msg:
-                        return msg.split(';')
+                        msg = msg.split(';')
+                        for txt in msg:
+                            txt = txt.replace('\r','')
+                            txt = txt.replace('\n','')
+                        return msg
                     else:
                         return msg
                 else:
