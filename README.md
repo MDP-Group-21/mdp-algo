@@ -10,7 +10,8 @@
           Updated week 8 code for image recognition<br/>
           Bug fixes for 0 crash states(TBC)<br/>
           Further adapted code for Android killswitch<br/>
-          
+- 11/10/18:
+          version 17 is week8-ready.<br/>         
           
           1. Note: Non-week uploads are not to be used for actual run.
           2. Requires IDLE and wampserver to run.
@@ -38,9 +39,12 @@
              
 ##### To do:
 - [X] Change simulation input to hex
-- [X] Adapt code for week 8 run (Almost there)
+- [X] Adapt code for week 8 run
 - [X] Begin working on integration (With RPI) (Using ~~multiprocess~~ socket)
-- [ ] Adapt code for burst mode (partially done)
-- [ ] Improve step evaluation to include turning as 1 step
-- [X] Adapt code for Android (killswitch, start explore, start fastest)
+- [X] Adapt code for burst mode
+- [X] Adapt code for Android (start explore, start fastest)
 - [X] Adapt code for image recognition
+- [ ] Improve step evaluation to include turning as 1 step
+- [ ] Improve code for image recognition
+- [ ] Find a way to activate killswitch without affecting the code
+
