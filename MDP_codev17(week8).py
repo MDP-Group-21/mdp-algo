@@ -1264,26 +1264,32 @@ if __name__ == "__main__":
     while True:
         try:
             if rdata == []:
-                print('Robot data, please')
-                rdata = mail.read('AND')
-                robot = Robot([int(rdata[0]), int(rdata[1])],rdata[2])
-                place_robot(robot.coord)
-                print('Awaiting orders')
+                recv = False
+                while not recv:
+                    try:
+                        print('Robot data, please')
+                        rdata = mail.read('AND')
+                        robot = Robot([int(rdata[0]), int(rdata[1])],rdata[2])
+                        place_robot(robot.coord)
+                        recv = True
+                    except:
+                        color.write('Robot initialization failed, rereading...','KEYWORD')
+                recv = False
+                while not recv:
+                    try:
+                        print('Waypoints, please.')
+                        rdata = mail.read('AND')
+                        waypoint = [int(rdata[0]), int(rdata[1])]
+                        recv = True
+                    except:
+                        color.write('Waypoint initialization failed, rereading...','KEYWORD')
             if msg == '':
                 msg = mail.read('AND')
             if msg == 'e':
                 #mail.write('ARD|.')
                 explore(robot)
                 explore_complete = True
-                print('Explore complete, awaiting waypoints for fastest path...')
-                try:
-                    #print('Waypoints, please.')
-                    rdata = mail.read('AND')
-                    waypoint = [int(rdata[0]), int(rdata[1])]
-                except:
-                    color.write('Waypoint initialization failed, defaulting to start','KEYWORD')
-                    waypoint = start
-                print('Awaiting start...')
+                print('Explore complete, awaiting fastest path...')
                 msg = mail.read('AND')
 ##                while msg != 'f':
 ##                    print('Awaiting start...')    
@@ -1305,13 +1311,6 @@ if __name__ == "__main__":
 ##                    print('Understood. Ending...')
 ##                    exit()
             elif msg == 'f' and explore_complete:
-                try:
-                    print('Waypoints, please.')
-                    rdata = mail.read('AND')
-                    waypoint = [int(rdata[0]), int(rdata[1])]
-                except:
-                    color.write('Waypoint initialization failed, defaulting to start','KEYWORD')
-                    waypoint = start
                 if waypoint == start or waypoint == goal:
                     fastest_path(robot, start, goal)
                 else:
