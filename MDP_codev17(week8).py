@@ -1290,26 +1290,29 @@ if __name__ == "__main__":
                 explore(robot)
                 explore_complete = True
                 print('Explore complete, awaiting fastest path...')
-                msg = mail.read('AND')
-##                while msg != 'f':
-##                    print('Awaiting start...')    
-##                    msg = mail.read('AND')
-                if msg == 'f':
-##                    try:
-##                        print('Waypoints, please.')
-##                        rdata = mail.read('AND')
-##                        waypoint = [int(rdata[0]), int(rdata[1])]
-##                    except:
-##                        color.write('Waypoint initialization failed, defaulting to start','KEYWORD')
-##                        waypoint = start
-                    if waypoint != start or waypoint != goal:
-                        fastest_path(robot, start, waypoint)
-                        fastest_path(robot, waypoint, end)
-                    else:
-                        fastest_path(robot, start, goal)
-##                elif msg == 'end':
-##                    print('Understood. Ending...')
-##                    exit()
+                recv = False
+                while not recv:
+                    msg = mail.read('AND')
+    ##                while msg != 'f':
+    ##                    print('Awaiting start...')    
+    ##                    msg = mail.read('AND')
+                    if msg == 'f':
+                        recv = True
+    ##                    try:
+    ##                        print('Waypoints, please.')
+    ##                        rdata = mail.read('AND')
+    ##                        waypoint = [int(rdata[0]), int(rdata[1])]
+    ##                    except:
+    ##                        color.write('Waypoint initialization failed, defaulting to start','KEYWORD')
+    ##                        waypoint = start
+                        if waypoint != start or waypoint != goal:
+                            fastest_path(robot, start, waypoint)
+                            fastest_path(robot, waypoint, end)
+                        else:
+                            fastest_path(robot, start, goal)
+    ##                elif msg == 'end':
+    ##                    print('Understood. Ending...')
+    ##                    exit()
             elif msg == 'f' and explore_complete:
                 if waypoint == start or waypoint == goal:
                     fastest_path(robot, start, goal)
