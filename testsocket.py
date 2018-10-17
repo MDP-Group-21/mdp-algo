@@ -38,7 +38,8 @@ class Algo():
     def read(self,fro=''):
         while True:
             try:
-                print('reading')
+                print('reading from: ',end='')
+                print(fro)
 ##                while self.client.recv(self.buffersize) == None:            
                 msg = self.client.recv(1024).decode('utf-8')
                 print('READ DATA: ' + msg)
@@ -48,13 +49,13 @@ class Algo():
                     if ';' in msg:
                         msg = msg.split(';')
                         for txt in msg:
-                            txt = txt.replace('\r','')
-                            txt = txt.replace('\n','')
+                            txt = txt.strip()
                         return msg
                     else:
                         return msg
                 else:
-                    return False
+                    time.sleep(0.5)
+                    #return False
             except socket.error:
                 self.connect()
                 time.sleep(2)
