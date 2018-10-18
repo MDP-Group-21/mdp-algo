@@ -27,6 +27,7 @@ class Algo():
             try:
                 print('sending')
                 self.client.sendall(msg.encode('utf-8'))
+                time.sleep(0.1)
                 print(msg)
                 sflag = True
             except socket.error:
