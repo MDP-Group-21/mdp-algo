@@ -234,7 +234,7 @@ def print_descriptor():
         des2 += '0'
     hstr2 = '%0*X' % ((len(des2) + 3) // 4, int(des2, 2))
     #print(hstr2)
-    return hstr + hstr2
+    return hstr + ';' + hstr2
 
 def print_alt_descriptor():
     descriptor = []
@@ -844,8 +844,8 @@ def robot_sense(robot, msg, up=False):
     #Wipe walls from both zones    
     for j in range(3):
         for i in range(3):
-            mdp_map[start[1]-1+j][start[0]-1+i].text = ''
-            mdp_map[goal[1]-1+j][goal[0]-1+i].text = ''
+            mdp_map[start[1]-1+j][start[0]-1+i].text = 'S'
+            mdp_map[goal[1]-1+j][goal[0]-1+i].text = 'G'
             
     with open("realtimemap.txt","w") as text_file_sim:
         text_file_sim.write(print_alt_descriptor())
@@ -915,7 +915,7 @@ def explore(robot):
         start_explored = True
     else:
         start_explored = False
-    first = True
+    #first = True
     turned = False
     turn_count = 5
     cal_count = 0
@@ -938,11 +938,11 @@ def explore(robot):
 ##            return
 ##        print(steps)
 
-        if robot_cornered(robot) and cal_count == 0:
-            #calibrate
-            mail.write('ARD|V')
-            mail.read('ARD')
-            cal_count = 5
+##        if robot_cornered(robot) and cal_count == 0:
+##            #calibrate
+##            mail.write('ARD|V')
+##            mail.read('ARD')
+##            cal_count = 3
         #If right wall is the edge of the arena, activate cruise
 ##        if not robot.second_ahead:
 ##            if robot.face == 'W':
@@ -1197,11 +1197,11 @@ def fastest_path(robot, begin, end, explore=False):
         #for item in frontier:
             #print(item.x + item.y)
         minima = min(frontier, key=attrgetter('total'))
-        maxima = max(frontier, key=attrgetter('step'))
-        for i in range(len(frontier)):
-            if frontier[i].total == minima.total and frontier[i].step == maxima.step:
-                eye = [frontier[i].x, frontier[i].y]
-##        eye = [minima.x, minima.y]
+##        maxima = max(frontier, key=attrgetter('step'))
+##        for i in range(len(frontier)):
+##            if frontier[i].total == minima.total and frontier[i].step == maxima.step:
+##                eye = [frontier[i].x, frontier[i].y]
+        eye = [minima.x, minima.y]
 ##        testing = False
 ##        if len(frontier) > 4 and not testing:
 ##            for i in range(len(frontier)):
