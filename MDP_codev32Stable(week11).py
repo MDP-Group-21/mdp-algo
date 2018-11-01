@@ -1051,17 +1051,17 @@ def explore(robot):
 ##        except:
 ##            pass
 
-##    while not fully_explored():
-##        print('Begin relocation routine.')
-##        print(robot.coord)
-##        fastest_path(robot, robot.coord, to_explore(robot.coord), True)
-##        mail.write('ARD|.')
-##        msg = mail.read('ARD')
-##        if 'UP' in ack:
-##            print('UP')
-##            robot_sense(robot, msg[1], True)
-##        else:
-##            robot_sense(robot, msg[1])
+    while not fully_explored():
+        print('Begin relocation routine.')
+        print(robot.coord)
+        fastest_path(robot, robot.coord, to_explore(robot.coord), True)
+        mail.write('ARD|.')
+        msg = mail.read('ARD')
+        if 'UP' in msg:
+            print('UP')
+            robot_sense(robot, msg[1], True)
+        else:
+            robot_sense(robot, msg)
     if robot.coord != start:
         fastest_path(robot, robot.coord, start)
     and_write(robot)
@@ -1100,7 +1100,7 @@ def fastest_path(robot, begin, end, explore=False):
                     wflag = True
                     #print('D, wall')
             if not wflag and mdp_map[eye[1]][eye[0]+2].explored:
-                print(str(eye[0]+1) + str(eye[1]))
+                #print(str(eye[0]+1) + str(eye[1]))
                 fval = 0
                 if eye == end or mdp_map[eye[1]][eye[0]].fpath == 'A':
                     #print('ding')
@@ -1129,7 +1129,7 @@ def fastest_path(robot, begin, end, explore=False):
                     wflag = True
                     #print('A, wall')
             if not wflag and mdp_map[eye[1]][eye[0]-2].explored:
-                print(str(eye[0]-1) + str(eye[1]))
+                #print(str(eye[0]-1) + str(eye[1]))
                 fval = 0
                 if eye == end or mdp_map[eye[1]][eye[0]].fpath == 'D':
                     #print('ding')
@@ -1159,7 +1159,7 @@ def fastest_path(robot, begin, end, explore=False):
                     wflag = True
                     #print('W, wall')
             if not wflag and mdp_map[eye[1]+2][eye[0]].explored:
-                print(str(eye[0]) + str(eye[1]+1))
+                #print(str(eye[0]) + str(eye[1]+1))
                 fval = 0
                 if eye == end or mdp_map[eye[1]][eye[0]].fpath == 'S':
                     #print('ding')
@@ -1189,7 +1189,7 @@ def fastest_path(robot, begin, end, explore=False):
                     wflag = True
                     #print('S, wall')
             if not wflag and mdp_map[eye[1]-2][eye[0]].explored:
-                print(str(eye[0]) + str(eye[1]-1))
+                #print(str(eye[0]) + str(eye[1]-1))
                 fval = 0
                 if eye == end or mdp_map[eye[1]][eye[0]].fpath == 'W':
                     #print('ding')
